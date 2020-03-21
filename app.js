@@ -20,12 +20,12 @@ var mysql = require('mysql');
 
 //   1.创建连接数据库
 var connection = mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'142857',
-    database:'检票数据'
+    host:'62.234.68.226',
+    user:'bjut',
+    password:'password',
+    database:'ticketsdata'
 });
-//2.连接数据库 打开冰箱门
+//2.连接数据库
 connection.connect();
 //3.执行数据操作
 data={}
@@ -34,7 +34,7 @@ data2={}
 data3={}
 function scheduleCronstyle(){
     schedule.scheduleJob('*/10 * * * * *', function(){
-        connection.query('select fticketno from 查询历史时段票捡记录 ',function(error,results,field){
+        connection.query('select fticketno from ticket ',function(error,results,field){
             if(error) throw error;
             // console.log(results[0])
             //where funiqueid< 576579499559374149
@@ -141,7 +141,7 @@ function scheduleCronstyle(){
             })
 
         });
-        connection.query('select fdoorid from 查询历史时段票捡记录 ',function(error,results,field){
+        connection.query('select fdoorid from ticket ',function(error,results,field){
             if(error) throw error;
             //console.log(results[0].fdoorid)
             // console.log(results[0])
@@ -179,7 +179,7 @@ function scheduleCronstyle(){
             })
 
         });
-        connection.query('select fpasstime from 查询历史时段票捡记录 ',function(error,results,field){
+        connection.query('select fpasstime from ticket ',function(error,results,field){
             if(error) throw error;
             var data={"09":0,"10":0,"11":0,"12":0,"13":0,"14":0,"15":0,"16":0,"17":0};
             for(var i=0;i<results.length;i++){
